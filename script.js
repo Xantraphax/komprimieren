@@ -1,33 +1,37 @@
 const treeContainer = document.getElementById('tree-container');
 
 function createBinaryTree(levels) {
-  const nodeWidth = 50;
-  const nodeHeight = 50;
+  const treeWidth = treeContainer.offsetWidth || 800;
+  const treeHeight = treeContainer.offsetHeight || 600;
 
-  // Total width and height of the tree container
-  const treeWidth = treeContainer.offsetWidth || 800; // Fallback width
-  const treeHeight = treeContainer.offsetHeight || 600; // Fallback height
-
-  // Recursively create tree nodes and edges
   function createNode(level, index, x, y, parentX = null, parentY = null, label = '') {
-    // Create node element
+    // Berechnung der Knotengröße basierend auf der Ebene
+    const maxSize = 50; // Maximale Größe der Knoten
+    const minSize = 5;  // Minimale (unsichtbare) Größe der Knoten
+    const size = Math.max(maxSize - (level - 4) * (maxSize / levels), minSize);
+
+    // Node erstellen
     const node = document.createElement('div');
     node.classList.add('node');
-    node.style.left = `${x}px`;
-    node.style.top = `${y}px`;
+    node.style.left = `${x - size / 2}px`;
+    node.style.top = `${y - size / 2}px`;
+    node.style.width = `${size}px`;
+    node.style.height = `${size}px`;
 
-    // Add input field to the node
+    // Wenn die Größe zu klein ist, Knoten unsichtbar machen
+    if (size <= minSize) {
+      node.style.opacity = '0';
+    }
+
+    // Input-Feld hinzufügen
     const input = document.createElement('input');
     input.type = 'text';
-    input.placeholder = '...';
-    input.style.width = '80%';
-    input.style.border = 'none';
-    input.style.textAlign = 'center';
-    input.style.outline = 'none';
+    input.placeholder = level === levels ? '' : '...';
+    input.style.fontSize = `${size / 3}px`;
     node.appendChild(input);
     treeContainer.appendChild(node);
 
-    // Draw line to parent node if exists
+    // Linie zum Elternknoten
     if (parentX !== null && parentY !== null) {
       const line = document.createElement('div');
       line.style.position = 'absolute';
@@ -40,7 +44,7 @@ function createBinaryTree(levels) {
       line.style.top = `${parentY}px`;
       treeContainer.appendChild(line);
 
-      // Add edge label (0 or 1)
+      // Beschriftung der Kante
       const edgeLabel = document.createElement('div');
       edgeLabel.classList.add('edge-label');
       edgeLabel.innerText = label;
@@ -49,28 +53,26 @@ function createBinaryTree(levels) {
       treeContainer.appendChild(edgeLabel);
     }
 
-    // Stop recursion if the maximum level is reached
-    if (level >= levels) {
-      return;
-    }
+    // Abbruch bei der letzten Ebene
+    if (level >= levels) return;
 
-    // Calculate positions for child nodes
-    const childY = y + 100; // Vertical distance between levels
-    const spacing = treeWidth / (2 ** (level + 1)); // Horizontal spacing
+    // Positionen der Kinder berechnen
+    const childY = y + 100; // Vertikaler Abstand
+    const spacing = treeWidth / (2 ** (level + 1));
 
     const leftChildX = x - spacing;
     const rightChildX = x + spacing;
 
-    // Recursively create left and right child nodes
-    createNode(level + 1, index * 2, leftChildX, childY, x, y, '0'); // Left child
-    createNode(level + 1, index * 2 + 1, rightChildX, childY, x, y, '1'); // Right child
+    // Rekursiv Kinderknoten erstellen
+    createNode(level + 1, index * 2, leftChildX, childY, x, y, '0'); // Linkes Kind
+    createNode(level + 1, index * 2 + 1, rightChildX, childY, x, y, '1'); // Rechtes Kind
   }
 
-  // Initialize tree with root node
+  // Wurzelknoten
   const rootX = treeWidth / 2;
-  const rootY = 50; // Root node height
+  const rootY = 50;
   createNode(1, 1, rootX, rootY);
 }
 
-// Create a binary tree with 5 levels
+// Baum erstellen
 createBinaryTree(5);
