@@ -1,16 +1,21 @@
 const treeContainer = document.getElementById('tree-container');
+const depthInput = document.getElementById('depth');
+const drawButton = document.getElementById('draw-tree');
 
+// Funktion zum Erstellen des Binärbaums
 function createBinaryTree(levels) {
+  treeContainer.innerHTML = ''; // Alten Baum löschen
+
   const treeWidth = treeContainer.offsetWidth || 800;
   const treeHeight = treeContainer.offsetHeight || 600;
 
   function createNode(level, index, x, y, parentX = null, parentY = null, label = '') {
     // Berechnung der Knotengröße basierend auf der Ebene
     const maxSize = 50; // Maximale Größe der Knoten
-    const minSize = 5;  // Minimale (unsichtbare) Größe der Knoten
+    const minSize = 5;  // Minimale Größe der Knoten
     const size = Math.max(maxSize - (level - 4) * (maxSize / levels), minSize);
 
-    // Node erstellen
+    // Knoten erstellen
     const node = document.createElement('div');
     node.classList.add('node');
     node.style.left = `${x - size / 2}px`;
@@ -23,7 +28,7 @@ function createBinaryTree(levels) {
       node.style.opacity = '0';
     }
 
-    // Input-Feld hinzufügen
+    // Eingabefeld hinzufügen
     const input = document.createElement('input');
     input.type = 'text';
     input.placeholder = level === levels ? '' : '...';
@@ -74,5 +79,15 @@ function createBinaryTree(levels) {
   createNode(1, 1, rootX, rootY);
 }
 
-// Baum erstellen
-createBinaryTree(5);
+// Event-Listener für den Button
+drawButton.addEventListener('click', () => {
+  const levels = parseInt(depthInput.value, 10);
+  if (levels >= 1 && levels <= 10) {
+    createBinaryTree(levels);
+  } else {
+    alert('Bitte geben Sie eine Tiefe zwischen 1 und 10 ein.');
+  }
+});
+
+// Standardbaum mit Tiefe 5 erstellen
+createBinaryTree(4);
