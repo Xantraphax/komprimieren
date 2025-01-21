@@ -1,21 +1,33 @@
-const treeContainer = document.getElementById('tree-container');
+.hidden {
+  display: none;
+}
 
-function createBinaryTree(levels) {
-  const nodeWidth = 50;
-  const nodeHeight = 50;
+#fullscreen-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
 
-  // Total width of the tree container
-  const treeWidth = treeContainer.offsetWidth;
+#fullscreen-image {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+}
 
-  // Recursively create tree nodes and edges
-  function createNode(level, index, x, y, parentX = null, parentY = null, label = '') {
-    // Create node element
-    const node = document.createElement('div');
-    node.classList.add('node');
-    node.style.left = `${x}px`;
-    node.style.top = `${y}px`;
-
-    const input = document.createElement('input');
-    input.type = 'text';
-    input.placeholder = '...';
-   
+#close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  cursor: pointer;
+}
