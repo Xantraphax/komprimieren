@@ -1,39 +1,21 @@
-body {
-  font-family: Arial, sans-serif;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  background-color: #f0f0f0;
-}
+const treeContainer = document.getElementById('tree-container');
 
-#tree-container {
-  position: relative;
-  width: 100%;
-  height: 100%;
-}
+function createBinaryTree(levels) {
+  const nodeWidth = 50;
+  const nodeHeight = 50;
 
-.node {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  background-color: #fff;
-  border: 2px solid #000;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 50px;
-  font-size: 14px;
-  font-weight: bold;
-  transform: translate(-50%, -50%);
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-}
+  // Total width of the tree container
+  const treeWidth = treeContainer.offsetWidth;
 
-.edge-label {
-  position: absolute;
-  font-size: 12px;
-  background-color: #f0f0f0;
-  padding: 2px;
-  border-radius: 3px;
-  transform: translate(-50%, -50%);
-}
+  // Recursively create tree nodes and edges
+  function createNode(level, index, x, y, parentX = null, parentY = null, label = '') {
+    // Create node element
+    const node = document.createElement('div');
+    node.classList.add('node');
+    node.style.left = `${x}px`;
+    node.style.top = `${y}px`;
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.placeholder = '...';
+   
