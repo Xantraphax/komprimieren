@@ -16,3 +16,7 @@ json
   "3-6": "Right Left",
   "3-7": "Right Right"
 }
+ToDo:
+- Speichern
+- Ebenen/Beschrifftung anzeigen
+- Blätter/Wurzel einfärben
