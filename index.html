@@ -3,12 +3,31 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Binärbaum-Editor</title>
+  <title>Binärbaum-Editor mit Buchstabenzählung</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="controls"></div>
   <div id="tree-container"></div>
+  
+  <div id="letter-counter">
+    <h2>Buchstabenzähler</h2>
+    <input type="text" id="input-text" placeholder="Geben Sie einen Satz ein...">
+    <button id="count-button">Zählen</button>
+    <table id="result-table">
+      <thead>
+        <tr>
+          <th>Buchstabe</th>
+          <th>Anzahl</th>
+		  <th>Code-Länge</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <div id="calculation-result" style="display: none; margin-top: 15px; font-weight: bold;"></div>
+
   <script src="script.js"></script>
+
 </body>
 </html>
