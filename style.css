@@ -23,6 +23,7 @@
 
 /* Baumcontainer */
 #tree-container {
+display:flex;
   position: relative;
   width: 100vw;
   height: 100vh;
@@ -75,4 +76,111 @@ div[style*="rotate"] {
 .line {
   position: absolute;
   background-color: #000;
+}
+
+/* Stil für die Tabelle */
+#result-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabellenkopf */
+#result-table thead {
+  background-color: #005eff;
+  color: white;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+#result-table th, #result-table td {
+  padding: 12px;
+  text-align: center;
+}
+
+/* Abgerundete obere Ecken für das thead */
+#result-table thead tr:first-child th:first-child {
+  border-top-left-radius: 10px;
+}
+#result-table thead tr:first-child th:last-child {
+  border-top-right-radius: 10px;
+}
+
+/* Abwechselnde Zeilenfarben für bessere Lesbarkeit */
+#result-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Hover-Effekt für Zeilen */
+#result-table tbody tr:hover {
+  background-color: #e0eaff;
+  transition: background 0.3s ease;
+}
+
+/* Stil für die Zellen */
+#result-table td {
+  border-bottom: 1px solid #ddd;
+}
+
+/* Letzte Zeile ohne Rand */
+#result-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Überschrift */
+#letter-counter h2 {
+  font-size: 1.8rem;
+  color: #333;
+  text-align: center;
+  margin-bottom: 15px;
+  font-weight: bold;
+  
+}
+
+/* Eingabefeld */
+#input-text {
+  width: 100%;
+  max-width: 90%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 2px solid #005eff;
+  border-radius: 5px;
+  outline: none;
+  text-align: center;
+  transition: border-color 0.3s, box-shadow 0.3s;
+
+}
+
+#input-text:focus {
+  border-color: #003bb3;
+  box-shadow: 0 0 8px rgba(0, 94, 255, 0.5);
+}
+
+/* Button */
+#count-button {
+  display: block;
+  width: 100%;
+  max-width: 150px;
+  margin: 10px auto;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  background-color: #005eff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.2s;
+}
+
+#count-button:hover {
+  background-color: #003bb3;
+}
+
+#count-button:active {
+  transform: scale(0.95);
 }
