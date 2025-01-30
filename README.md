@@ -1,10 +1,15 @@
-http://example.com/index.html
-?depthInput=true
-&drawTreeButton=true
-&cleanTreeButton=true
-&prefixTestButton=true
-&loadButton=true
-&path=https://xantraphax.github.io/komprimieren/tree.json
+Setze ein ? hinter die Url und kopiere das gewünschte Feature dahinter. Um mehrer Feature zu aktivieren verwende ein "&" dazwischen.
+
+file:///C:/Users/kitty/OneDrive/Desktop/Neuer%20Ordner/index.html?
+
+depthInput=true
+drawTreeButton=true
+cleanTreeButton=true
+prefixTestButton=true
+loadButton=true
+counter
+
+path=https://xantraphax.github.io/komprimieren/tree.json
 
 json
 {
